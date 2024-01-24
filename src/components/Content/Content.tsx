@@ -1,6 +1,21 @@
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import MenuTabs from "../MenuTabs/MenuTabs";
 import TaskCard from "../TaskCard/TaskCard";
+
+const tasks = [
+    {
+        id: 1,
+        taskName: 'Buy Books',
+        description: 'make sure the Author is Ryan Holidays',
+        highPriority: false
+    },
+    {
+        id: 2,
+        taskName: 'Feed the dog',
+        description: 'need to shower them first',
+        highPriority: true
+    }
+]
 
 const Content = () => {
   return (
@@ -16,7 +31,11 @@ const Content = () => {
       pb={3}
     >
       <MenuTabs />
-      <TaskCard />
+      {tasks.length !== 0 ? (
+        tasks.map((task) => <TaskCard key={task.id} task={task} />)
+      ) : (
+        <Typography sx={{ marginRight: "auto" }} variant="h5" />
+      )}
     </Box>
   );
 };
