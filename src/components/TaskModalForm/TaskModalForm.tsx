@@ -37,7 +37,7 @@ const TaskModalForm = ({
   actionType,
   toUpdateTask,
 }: TaskModalProps) => {
-  const { addTask, removeTask } = useTaskStore()
+  const { addTask, removeTask, updateTask } = useTaskStore()
   const form = useForm<Task>({
     defaultValues: {
       id: toUpdateTask ? toUpdateTask.id : Math.floor(Math.random() * 100),
@@ -51,10 +51,11 @@ const TaskModalForm = ({
   const { errors } = formState;
 
   const onSubmit = (formData: Task) => {
-    console.log("onSubmit", formData)
-    addTask(formData)
-    setIsOpen(false)
+    const submitAction = actionType.action === Action.update ? updateTask : addTask;
+    submitAction(formData);
+    setIsOpen(false);
   };
+  
 
   const handleDelete = () => {
     removeTask(form.getValues("id"))
