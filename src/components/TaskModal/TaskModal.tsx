@@ -2,12 +2,18 @@ import {
   Box,
   Button,
   Checkbox,
+  FormControl,
   FormControlLabel,
+  InputLabel,
+  MenuItem,
   Modal,
+  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import React from "react";
+import { ActionType } from "../../shared/models/ActionType.model";
+import { Action } from "../../shared/enums/Action.enum";
 
 const style = {
   position: "absolute" as "absolute",
@@ -16,17 +22,18 @@ const style = {
   transform: "translate(-50%, -50%)",
   width: 400,
   bgcolor: "background.paper",
-  border: "2px solid #000",
   boxShadow: 24,
+  borderRadius: 3,
   p: 4,
 };
 
 type TaskModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  actionType: ActionType;
 };
 
-const TaskModal = ({ isOpen, setIsOpen }: TaskModalProps) => {
+const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
   return (
     <Modal
       open={isOpen}
@@ -42,7 +49,7 @@ const TaskModal = ({ isOpen, setIsOpen }: TaskModalProps) => {
           fontWeight={"500"}
           textAlign={"center"}
         >
-          Add task
+          {actionType.action === Action.add ? "Add Task" : "Update Task"}
         </Typography>
         <TextField
           id="outlined-basic"
@@ -68,26 +75,74 @@ const TaskModal = ({ isOpen, setIsOpen }: TaskModalProps) => {
             },
           }}
         />
-        <Box sx={{display: "flex", justifyContent: "end"}} mt={1} mb={1}>
-          <FormControlLabel
-            // value="start"
-            control={
-            <Checkbox sx={{
-              '&.Mui-checked': {
-                color: "#4d5bbe",
-              },
-            }}/>
-            }
-            label="High priority"
-            labelPlacement="start"
-          />
+        <Box sx={{ display: "flex", justifyContent: "end" }} mt={1} mb={1}>
+          <FormControl fullWidth sx={{ pt: actionType.action !== Action.add ? 1 : 0 }}>
+            {actionType.action !== Action.add && (
+              <>
+                <InputLabel id="demo-simple-select-label">Move</InputLabel>
+                <Select
+                  labelId="demo-simple-select-label"
+                  // value={age}
+                  label="Move"
+                  // onChange={handleChange}
+                >
+                  <MenuItem value={0}>Pending</MenuItem>
+                  <MenuItem value={1}>Completed</MenuItem>
+                </Select>
+              </>
+            )}
+            <FormControlLabel
+              // value="start"
+              control={
+                <Checkbox
+                  sx={{
+                    "&.Mui-checked": {
+                      color: "#4d5bbe",
+                    },
+                  }}
+                />
+              }
+              label="High priority"
+              labelPlacement="start"
+            />
+          </FormControl>
         </Box>
-        <Button variant="contained" sx={{
-          width: "100%",
-          paddingTop: 2,
-          paddingBottom: 2,
-          backgroundColor: "#4d5bbe"
-        }}>Add Task</Button>
+        {actionType.action === Action.add ? (
+          <Button
+            variant="contained"
+            sx={{
+              width: "100%",
+              paddingTop: 2,
+              paddingBottom: 2,
+              backgroundColor: "#4d5bbe",
+            }}
+          >
+            Add Task
+          </Button>
+        ) : (
+          <Box sx={{ display: "flex", gap: 1 }}>
+            <Button
+              variant="contained"
+              sx={{
+                paddingTop: 2,
+                paddingBottom: 2,
+                backgroundColor: "#4d5bbe",
+              }}
+            >
+              Update Task
+            </Button>
+            <Button
+              variant="contained"
+              sx={{
+                paddingTop: 2,
+                paddingBottom: 2,
+                backgroundColor: "#BF3131",
+              }}
+            >
+              Delete Task
+            </Button>
+          </Box>
+        )}
       </Box>
     </Modal>
   );
