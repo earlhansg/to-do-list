@@ -1,11 +1,15 @@
-import { Fab } from "@mui/material";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
-
+/* materialUI */
+import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
-import TaskModal from "../TaskModal/TaskModalForm";
+/* components */
+import TaskModal from "../TaskModalForm/TaskModalForm";
+/* shared */
 import { ActionType } from "../../shared/models/ActionType.model";
 import { Action } from "../../shared/enums/Action.enum";
 import { Task } from "../../shared/models/Task.model";
+/* style */
+import { ButtonWithDialogStyle } from "./ButtonWithDialogStyle";
 
 export type ButtonWithDialogMethods = {
     updateTask: (task: Task) => void;
@@ -17,7 +21,6 @@ const ButtonWithDialog: React.ForwardRefRenderFunction<ButtonWithDialogMethods, 
   const [task, setTask] = useState<Task | null>(null)
 
   const updateTask = (task: Task) => {
-    // console.log('Method called in child component', task);
     setTask(task);
     setIsOpen(true);
     setActionType({action: Action.update})
@@ -34,12 +37,7 @@ const ButtonWithDialog: React.ForwardRefRenderFunction<ButtonWithDialogMethods, 
       <Fab
         color="primary"
         aria-label="add"
-        style={{
-          position: "absolute",
-          bottom: 25,
-          right: 35,
-          backgroundColor: "#4d5bbe",
-        }}
+        sx={ButtonWithDialogStyle.fabIcon}
         onClick={() => {
           setTask(null);
           setIsOpen(true)
