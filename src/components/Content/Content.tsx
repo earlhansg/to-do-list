@@ -5,6 +5,7 @@ import TaskCard from "../TaskCard/TaskCard";
 import { ButtonWithDialogMethods, ForwardedButtonWithDialog } from "../ButtonWithDialog/ButtonWithDialog";
 import { useRef } from "react";
 import { Task } from "../../shared/models/Task.model";
+import { ContentStyle } from "./ContentStyle";
 
 const tasks = [
     {
@@ -42,12 +43,7 @@ const Content = () => {
   };
   return (
     <Box
-      sx={{
-        bgcolor: "white",
-        borderRadius: "10px 10px 0 0",
-        flex: 1,
-        position: "relative"
-      }}
+      sx={ContentStyle.container}
       pl={5}
       pr={5}
       pt={3}
@@ -69,7 +65,6 @@ const Content = () => {
         }}
       </MenuTabs>
       <ForwardedButtonWithDialog ref={buttonWithDialogRef}/>
-      {/* <button onClick={handleButtonClick}>Call Child Method</button> */}
     </Box>
   );
 };
