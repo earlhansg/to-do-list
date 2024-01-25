@@ -20,8 +20,9 @@ import {
 import { ActionType } from "../../shared/models/ActionType.model";
 import { Action } from "../../shared/enums/Action.enum";
 import { Task } from "../../shared/models/Task.model";
-import { FormValues } from "../../shared/models/FormValues.model";
 import { DevTool } from "@hookform/devtools";
+/* store */
+import { useTaskStore } from "../../shared/stores/TaskStore";
 
 type TaskModalProps = {
   isOpen: boolean;
@@ -36,9 +37,10 @@ const TaskModalForm = ({
   actionType,
   toUpdateTask,
 }: TaskModalProps) => {
-  const form = useForm<FormValues>({
+  const { addTask } = useTaskStore()
+  const form = useForm<Task>({
     defaultValues: {
-      id: toUpdateTask ? toUpdateTask.id : 10,
+      id: toUpdateTask ? toUpdateTask.id : Math.floor(Math.random() * 100),
       taskName: toUpdateTask ? toUpdateTask.taskName : "",
       description: toUpdateTask ? toUpdateTask.description : "",
       highPriority: toUpdateTask ? toUpdateTask.highPriority : false,
@@ -48,8 +50,10 @@ const TaskModalForm = ({
   const { register, formState, handleSubmit } = form;
   const { errors } = formState;
 
-  const onSubmit = (formData: FormValues) => {
-    console.log("formData", formData);
+  const onSubmit = (formData: Task) => {
+    console.log("onSubmit", formData)
+    addTask(formData)
+    setIsOpen(false)
   };
 
   return (
