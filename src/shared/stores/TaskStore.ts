@@ -4,6 +4,7 @@ import { Task } from '../models/Task.model';
 type TaskState = {
   tasks: Task[];
   addTask: (newTask: Task) => void;
+  removeTask: (taskId: number) => void;
 }
 
 export const useTaskStore = create<TaskState>((set) => ({
@@ -31,4 +32,5 @@ export const useTaskStore = create<TaskState>((set) => ({
     }
   ],
   addTask: (newTask: Task) => set((state) => ({tasks: [...state.tasks, newTask]})),
+  removeTask: (taskId: number) => set((state) => ({tasks: state.tasks.filter((task) => task.id !== taskId)})),
 }));

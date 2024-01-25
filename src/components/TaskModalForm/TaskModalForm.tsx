@@ -37,7 +37,7 @@ const TaskModalForm = ({
   actionType,
   toUpdateTask,
 }: TaskModalProps) => {
-  const { addTask } = useTaskStore()
+  const { addTask, removeTask } = useTaskStore()
   const form = useForm<Task>({
     defaultValues: {
       id: toUpdateTask ? toUpdateTask.id : Math.floor(Math.random() * 100),
@@ -55,6 +55,11 @@ const TaskModalForm = ({
     addTask(formData)
     setIsOpen(false)
   };
+
+  const handleDelete = () => {
+    removeTask(form.getValues("id"))
+    setIsOpen(false)
+  }
 
   return (
     <>
@@ -165,6 +170,7 @@ const TaskModalForm = ({
                 <Button
                   variant="contained"
                   sx={TaskModalFormStyle.deleteButton}
+                  onClick={handleDelete}
                 >
                   Delete Task
                 </Button>
