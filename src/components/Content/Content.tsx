@@ -10,10 +10,10 @@ import { ButtonWithDialogMethods, ForwardedButtonWithDialog } from "../ButtonWit
 /* shared */
 import { Task } from "../../shared/models/Task.model";
 /* store */
-import { useStore } from "../../store";
+import { useTaskStore } from "../../shared/stores/TaskStore";
 
 const Content = () => {
-  const tasks = useStore((store) => store.task)
+  const { tasks } = useTaskStore()
   const buttonWithDialogRef = useRef<ButtonWithDialogMethods>(null);
 
   const handleButtonClick = (task: Task) => {
