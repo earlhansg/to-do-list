@@ -2,6 +2,8 @@ import { Alert, Box } from "@mui/material";
 import MenuTabs from "../MenuTabs/MenuTabs";
 import TaskCard from "../TaskCard/TaskCard";
 
+import ButtonWithDialog from "../ButtonWithDialog/ButtonWithDialog";
+
 const tasks = [
     {
         id: 1,
@@ -34,6 +36,7 @@ const Content = () => {
         bgcolor: "white",
         borderRadius: "10px 10px 0 0",
         flex: 1,
+        position: "relative"
       }}
       pl={5}
       pr={5}
@@ -55,6 +58,7 @@ const Content = () => {
           );
         }}
       </MenuTabs>
+      <ButtonWithDialog/>
     </Box>
   );
 };

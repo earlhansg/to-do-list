@@ -23,19 +23,19 @@ const MenuTabs = ({children} : MenuTabsProps) => {
   return (
     <>
         <Tabs
-        value={value} 
-        onChange={handleChange}
-        sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-        }}
-        TabIndicatorProps={{
-            style: { backgroundColor: "#4d5bbe" },
-        }}
-        aria-label="basic tabs example"
-        >
-        <Tab label="All tasks" {...a11yProps(0)} />
-        <Tab label="Completed" {...a11yProps(1)} />
+            value={value} 
+            onChange={handleChange}
+            sx={{
+                borderBottom: 1,
+                borderColor: "divider",
+            }}
+            TabIndicatorProps={{
+                style: { backgroundColor: "#4d5bbe" },
+            }}
+            aria-label="basic tabs example"
+            >
+            <Tab label="All tasks" {...a11yProps(0)} />
+            <Tab label="Completed" {...a11yProps(1)} />
         </Tabs>
         {children(value)}
     </>

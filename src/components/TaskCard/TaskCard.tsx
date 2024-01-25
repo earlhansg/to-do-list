@@ -1,6 +1,6 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
 
-import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import PanToolIcon from '@mui/icons-material/PanTool';
 import { Task } from "../../shared/models/Task.model";
 
 
@@ -18,7 +18,7 @@ const TaskCard = ({task} : TaskCardProps) => {
             {task.taskName}
           </Typography>
           {task.highPriority && (
-            <PriorityHighIcon sx={{ color: "#D04848", fontSize: "2.5rem" }} />
+            <PanToolIcon sx={{ color: "#f4cc0c", fontSize: "2.5rem" }} />
           )}
         </Box>
         <Typography sx={{ fontSize: 14 }} color="text.secondary">
