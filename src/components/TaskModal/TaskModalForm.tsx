@@ -17,7 +17,6 @@ import { Action } from "../../shared/enums/Action.enum";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools"
 import { Task } from "../../shared/models/Task.model";
-
 const style = {
   position: "absolute" as "absolute",
   top: "50%",
@@ -37,7 +36,7 @@ type TaskModalProps = {
   toUpdateTask: Task | null;
 };
 
-type FormValues = {
+export type FormValues = {
   id?: number;
   taskName: string;
   description?: string;
@@ -45,7 +44,7 @@ type FormValues = {
   status: number;
 }
 
-const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalProps) => {
+const TaskModalForm = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalProps) => {
   const form = useForm<FormValues>({
     defaultValues: {
       id: toUpdateTask ? toUpdateTask.id : 10,
@@ -55,10 +54,11 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
       status: toUpdateTask ? toUpdateTask.status : 0
     }
   });
-  const {register, control } = form;
+  const {register, control, formState, handleSubmit } = form;
+  const { errors } = formState;
 
-  const addTask = () => {
-    console.log("Form Submitted", form.getValues())
+  const onSubmit = (formData: FormValues) => {
+    console.log("formData", formData)
   }
 
   return (
@@ -69,6 +69,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
+      <form onSubmit={handleSubmit(onSubmit)}>
       <Box sx={style}>
         <Typography
           id="modal-modal-title"
@@ -90,8 +91,14 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
               marginTop: "1rem",
             },
           }}
-          {...register("taskName")}
+          {...register("taskName", {
+            required: "Taskname is required"
+          })}
         />
+            <Typography mt={1} component="p" sx={{color:"#BF3131", fontSize: "14px", fontWeight: "500"}}>
+              {errors.taskName?.message}
+            </Typography>
+
         <TextField
           id="outlined-multiline-static"
           multiline
@@ -115,7 +122,6 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
                   labelId="demo-simple-select-label"
                   value={toUpdateTask ? form.getValues("status") : 0}
                   label="Move"
-                  // onChange={handleChange}
                   {...register("status")}
                 >
                   <MenuItem value={0}>Pending</MenuItem>
@@ -124,7 +130,6 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
               </>
             )}
             <FormControlLabel
-              // value="start"
               control={
                 <Checkbox
                   defaultChecked={toUpdateTask ? form.getValues("highPriority") : false}
@@ -150,7 +155,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
               paddingBottom: 2,
               backgroundColor: "#4d5bbe",
             }}
-            onClick={addTask}
+            type="submit"
           >
             Add Task
           </Button>
@@ -163,6 +168,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
                 paddingBottom: 2,
                 backgroundColor: "#4d5bbe",
               }}
+              type="submit"
             >
               Update Task
             </Button>
@@ -179,10 +185,11 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
           </Box>
         )}
       </Box>
+      </form>
     </Modal>
-    <DevTool control={control} />
+    {/* <DevTool control={control} /> */}
     </>
   );
 };
 
-export default TaskModal;
+export default TaskModalForm;

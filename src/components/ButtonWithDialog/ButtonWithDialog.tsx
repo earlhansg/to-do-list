@@ -2,7 +2,7 @@ import { Fab } from "@mui/material";
 import React, { forwardRef, useImperativeHandle, useState } from "react";
 
 import AddIcon from "@mui/icons-material/Add";
-import TaskModal from "../TaskModal/TaskModal";
+import TaskModal from "../TaskModal/TaskModalForm";
 import { ActionType } from "../../shared/models/ActionType.model";
 import { Action } from "../../shared/enums/Action.enum";
 import { Task } from "../../shared/models/Task.model";
@@ -51,8 +51,6 @@ const ButtonWithDialog: React.ForwardRefRenderFunction<ButtonWithDialogMethods, 
     </>
   );
 };
-
-// export default ButtonWithDialog;
 
 export const ForwardedButtonWithDialog = forwardRef(ButtonWithDialog);
 
