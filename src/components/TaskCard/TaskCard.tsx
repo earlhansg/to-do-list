@@ -1,6 +1,7 @@
+/* materialUI */
 import { Box, Card, CardActionArea, CardContent, Typography } from "@mui/material";
-
 import PanToolIcon from '@mui/icons-material/PanTool';
+/* shared */
 import { Task } from "../../shared/models/Task.model";
 
 
@@ -10,11 +11,10 @@ type TaskCardProps = {
 }
 
 const TaskCard = ({task, updateTask} : TaskCardProps) => {
-  console.log("TaskCard Component")
   return (
     <Card sx={{ marginTop: "1.5rem", ":hover": "red"}} onClick={updateTask}>
       <CardActionArea>
-        <CardContent sx={{}}>
+        <CardContent>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
             <Typography sx={{ marginRight: "auto" }} variant="h5" gutterBottom>
               {task.taskName}
