@@ -1,14 +1,12 @@
+/* style */
+import { HeaderStyle } from './HeaderStyle'
+/* materialUI */
 import { Box, Typography } from '@mui/material'
 
 const Header = () => {
   return (
     <Box
-        sx={{
-          minHeight: 220,
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "end",
-        }}
+        sx={HeaderStyle.container}
       >
         <Typography
           variant="h4"
