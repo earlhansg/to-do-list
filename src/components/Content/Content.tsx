@@ -1,11 +1,14 @@
+import { useRef } from "react";
+/* style */
+import { ContentStyle } from "./ContentStyle";
+/* materialUI */
 import { Alert, Box } from "@mui/material";
+/* components */
 import MenuTabs from "../MenuTabs/MenuTabs";
 import TaskCard from "../TaskCard/TaskCard";
-
 import { ButtonWithDialogMethods, ForwardedButtonWithDialog } from "../ButtonWithDialog/ButtonWithDialog";
-import { useRef } from "react";
+/* shared */
 import { Task } from "../../shared/models/Task.model";
-import { ContentStyle } from "./ContentStyle";
 
 const tasks = [
     {

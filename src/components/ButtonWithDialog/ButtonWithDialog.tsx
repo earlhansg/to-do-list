@@ -1,4 +1,6 @@
 import React, { forwardRef, useImperativeHandle, useState } from "react";
+/* style */
+import { ButtonWithDialogStyle } from "./ButtonWithDialogStyle";
 /* materialUI */
 import { Fab } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,8 +10,6 @@ import TaskModal from "../TaskModalForm/TaskModalForm";
 import { ActionType } from "../../shared/models/ActionType.model";
 import { Action } from "../../shared/enums/Action.enum";
 import { Task } from "../../shared/models/Task.model";
-/* style */
-import { ButtonWithDialogStyle } from "./ButtonWithDialogStyle";
 
 export type ButtonWithDialogMethods = {
     updateTask: (task: Task) => void;
