@@ -113,7 +113,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
                 <InputLabel id="demo-simple-select-label">Move</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  value={0}
+                  value={toUpdateTask ? form.getValues("status") : 0}
                   label="Move"
                   // onChange={handleChange}
                   {...register("status")}
@@ -127,6 +127,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalPro
               // value="start"
               control={
                 <Checkbox
+                  defaultChecked={toUpdateTask ? form.getValues("highPriority") : false}
                   sx={{
                     "&.Mui-checked": {
                       color: "#4d5bbe",

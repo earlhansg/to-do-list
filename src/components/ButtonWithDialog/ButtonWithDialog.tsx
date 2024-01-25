@@ -41,6 +41,7 @@ const ButtonWithDialog: React.ForwardRefRenderFunction<ButtonWithDialogMethods, 
           backgroundColor: "#4d5bbe",
         }}
         onClick={() => {
+          setTask(null);
           setIsOpen(true)
           setActionType({action: Action.add})
         }}
