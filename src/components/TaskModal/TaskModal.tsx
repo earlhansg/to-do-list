@@ -14,6 +14,9 @@ import {
 import React from "react";
 import { ActionType } from "../../shared/models/ActionType.model";
 import { Action } from "../../shared/enums/Action.enum";
+import { useForm } from "react-hook-form";
+import { DevTool } from "@hookform/devtools"
+import { Task } from "../../shared/models/Task.model";
 
 const style = {
   position: "absolute" as "absolute",
@@ -31,10 +34,35 @@ type TaskModalProps = {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   actionType: ActionType;
+  toUpdateTask: Task | null;
 };
 
-const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
+type FormValues = {
+  id?: number;
+  taskName: string;
+  description?: string;
+  highPriority?: boolean;
+  status: number;
+}
+
+const TaskModal = ({ isOpen, setIsOpen, actionType, toUpdateTask }: TaskModalProps) => {
+  const form = useForm<FormValues>({
+    defaultValues: {
+      id: toUpdateTask ? toUpdateTask.id : 10,
+      taskName: toUpdateTask ? toUpdateTask.taskName : '',
+      description: toUpdateTask ? toUpdateTask.description : '',
+      highPriority: toUpdateTask ? toUpdateTask.highPriority : false,
+      status: toUpdateTask ? toUpdateTask.status : 0
+    }
+  });
+  const {register, control } = form;
+
+  const addTask = () => {
+    console.log("Form Submitted", form.getValues())
+  }
+
   return (
+    <>
     <Modal
       open={isOpen}
       onClose={() => setIsOpen(false)}
@@ -51,6 +79,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
         >
           {actionType.action === Action.add ? "Add Task" : "Update Task"}
         </Typography>
+
         <TextField
           id="outlined-basic"
           placeholder="Name"
@@ -61,6 +90,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
               marginTop: "1rem",
             },
           }}
+          {...register("taskName")}
         />
         <TextField
           id="outlined-multiline-static"
@@ -71,20 +101,22 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
           InputProps={{
             style: {
               borderRadius: "10px",
-              marginTop: "1rem",
+              marginTop: "0.5rem",
             },
           }}
+          {...register("description")}
         />
         <Box sx={{ display: "flex", justifyContent: "end" }} mt={1} mb={1}>
-          <FormControl fullWidth sx={{ pt: actionType.action !== Action.add ? 1 : 0 }}>
+          <FormControl fullWidth>
             {actionType.action !== Action.add && (
               <>
                 <InputLabel id="demo-simple-select-label">Move</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
-                  // value={age}
+                  value={0}
                   label="Move"
                   // onChange={handleChange}
+                  {...register("status")}
                 >
                   <MenuItem value={0}>Pending</MenuItem>
                   <MenuItem value={1}>Completed</MenuItem>
@@ -100,6 +132,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
                       color: "#4d5bbe",
                     },
                   }}
+                  {...register("highPriority")}
                 />
               }
               label="High priority"
@@ -116,6 +149,7 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
               paddingBottom: 2,
               backgroundColor: "#4d5bbe",
             }}
+            onClick={addTask}
           >
             Add Task
           </Button>
@@ -145,6 +179,8 @@ const TaskModal = ({ isOpen, setIsOpen, actionType }: TaskModalProps) => {
         )}
       </Box>
     </Modal>
+    <DevTool control={control} />
+    </>
   );
 };
 

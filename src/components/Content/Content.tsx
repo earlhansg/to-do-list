@@ -4,6 +4,7 @@ import TaskCard from "../TaskCard/TaskCard";
 
 import { ButtonWithDialogMethods, ForwardedButtonWithDialog } from "../ButtonWithDialog/ButtonWithDialog";
 import { useRef } from "react";
+import { Task } from "../../shared/models/Task.model";
 
 const tasks = [
     {
@@ -33,10 +34,10 @@ const Content = () => {
   console.log("Content Component")
   const buttonWithDialogRef = useRef<ButtonWithDialogMethods>(null);
 
-  const handleButtonClick = () => {
+  const handleButtonClick = (task: Task) => {
     // Access the method in the child component using the ref
     if (buttonWithDialogRef.current) {
-      buttonWithDialogRef.current.updateTask()
+      buttonWithDialogRef.current.updateTask(task)
     }
   };
   return (
@@ -58,12 +59,7 @@ const Content = () => {
 
           return filteredTasks.length !== 0 ? (
             filteredTasks.map((task) => (
-              // <TaskCard key={task.id} task={task}/>
-
-              <TaskCard key={task.id} task={task} updateTask={handleButtonClick}/>
-              // <Box onClick={handleButtonClick} key={task.id}>
-              //   <TaskCard task={task}/>
-              // </Box>
+              <TaskCard key={task.id} task={task} updateTask={() => handleButtonClick(task)}/>
             ))
           ) : (
             <Alert severity="info" sx={{ mt: 2 }}>
@@ -72,7 +68,6 @@ const Content = () => {
           );
         }}
       </MenuTabs>
-      {/* <ButtonWithDialog ref={buttonWithDialogRef}/> */}
       <ForwardedButtonWithDialog ref={buttonWithDialogRef}/>
       {/* <button onClick={handleButtonClick}>Call Child Method</button> */}
     </Box>
