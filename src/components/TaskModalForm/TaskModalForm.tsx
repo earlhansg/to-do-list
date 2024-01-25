@@ -1,5 +1,5 @@
 import React from "react";
-import { useForm } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 /* style */
 import { TaskModalFormStyle } from "./TaskModalFormStyle";
 /* materialUI */
@@ -47,7 +47,7 @@ const TaskModalForm = ({
       status: toUpdateTask ? toUpdateTask.status : 0,
     },
   });
-  const { register, formState, handleSubmit } = form;
+  const { register, formState, handleSubmit, control } = form;
   const { errors } = formState;
 
   const onSubmit = (formData: Task) => {
@@ -121,15 +121,17 @@ const TaskModalForm = ({
                 {actionType.action !== Action.add && (
                   <>
                     <InputLabel id="demo-simple-select-label">Move</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      value={toUpdateTask ? form.getValues("status") : 0}
-                      label="Move"
-                      {...register("status")}
-                    >
-                      <MenuItem value={0}>Pending</MenuItem>
-                      <MenuItem value={1}>Completed</MenuItem>
-                    </Select>
+                    <Controller
+                      name="status"
+                      control={control}
+                      defaultValue={toUpdateTask ? form.getValues("status") : 0}
+                      render={({ field }) => (
+                        <Select label="Move" {...field}>
+                          <MenuItem value={0} sx={{ display: form.getValues("status") === 0 ? 'none' : "inherit"}}>Pending</MenuItem>
+                          <MenuItem value={1} sx={{ display: form.getValues("status") === 1 ? 'none' : "inherit"}}>Completed</MenuItem>
+                        </Select>
+                      )}
+                    />
                   </>
                 )}
                 <FormControlLabel
