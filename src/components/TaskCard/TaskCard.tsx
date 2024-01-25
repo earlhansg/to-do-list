@@ -9,12 +9,12 @@ type TaskCardProps = {
 }
 
 const TaskCard = ({task} : TaskCardProps) => {
+  console.log("TaskCard Component")
   return (
-    <Card sx={{ marginTop: "1.5rem" }}>
+    <Card sx={{ marginTop: "1.5rem"}}>
       <CardContent sx={{}}>
         <Box sx={{ display: "flex", flexDirection: "row" }}>
           <Typography sx={{ marginRight: "auto" }} variant="h5" gutterBottom>
-            {/* Buy Paper */}
             {task.taskName}
           </Typography>
           {task.highPriority && (
@@ -22,7 +22,6 @@ const TaskCard = ({task} : TaskCardProps) => {
           )}
         </Box>
         <Typography sx={{ fontSize: 14 }} color="text.secondary">
-          {/* with pencil and everything */}
           {task.description}
         </Typography>
       </CardContent>

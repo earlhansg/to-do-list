@@ -3,4 +3,5 @@ export type Task = {
   taskName: string;
   description: string;
   highPriority: boolean;
+  status: number;
 };
