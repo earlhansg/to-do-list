@@ -1,5 +1,6 @@
-import { Tab, Tabs } from "@mui/material";
 import React, { ReactNode, useState } from "react";
+/* materialUI */
+import { Tab, Tabs } from "@mui/material";
 
 const a11yProps = (index: number) => {
   return {
@@ -13,7 +14,6 @@ export type MenuTabsProps = {
 }
 
 const MenuTabs = ({children} : MenuTabsProps) => {
-  console.log("MenuTabs Component")
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
