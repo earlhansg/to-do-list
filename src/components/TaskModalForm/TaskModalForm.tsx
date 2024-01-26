@@ -74,6 +74,7 @@ const TaskModalForm = ({
         <form onSubmit={handleSubmit(onSubmit)}>
           <Box sx={TaskModalFormStyle.contentContainer}>
             <Typography
+              data-testid="form-header"
               id="modal-modal-title"
               variant="h5"
               sx={TaskModalFormStyle.headerText}
@@ -82,6 +83,7 @@ const TaskModalForm = ({
             </Typography>
 
             <TextField
+              data-testid="taskName-input"
               id="outlined-basic"
               placeholder="Name"
               fullWidth
@@ -96,6 +98,7 @@ const TaskModalForm = ({
               })}
             />
             <Typography
+              data-testid="error-message"
               mt={1}
               component="p"
               sx={TaskModalFormStyle.errorMessage}
@@ -156,6 +159,7 @@ const TaskModalForm = ({
             </Box>
             {actionType.action === Action.add ? (
               <Button
+                data-testid="add-task"
                 variant="contained"
                 sx={TaskModalFormStyle.addButton}
                 type="submit"
@@ -165,6 +169,7 @@ const TaskModalForm = ({
             ) : (
               <Box sx={{ display: "flex", gap: 1 }}>
                 <Button
+                  data-testid="update-task"
                   variant="contained"
                   sx={TaskModalFormStyle.updateButton}
                   type="submit"
@@ -172,6 +177,7 @@ const TaskModalForm = ({
                   Update Task
                 </Button>
                 <Button
+                  data-testid="delete-task"
                   variant="contained"
                   sx={TaskModalFormStyle.deleteButton}
                   onClick={handleDelete}
