@@ -38,6 +38,7 @@ const MenuTabs = ({ children }: MenuTabsProps) => {
         aria-label="basic tabs example"
       >
         <Tab
+          data-testid="all-task"
           label={
             <Box sx={{display: "flex", gap: 1}}>
               <Typography
@@ -56,6 +57,7 @@ const MenuTabs = ({ children }: MenuTabsProps) => {
           {...a11yProps(0)}
         />
         <Tab
+          data-testid="completed"
           label={
             <Box sx={{display: "flex", gap: 1}}>
               <Typography

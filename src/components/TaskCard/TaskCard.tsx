@@ -12,7 +12,7 @@ type TaskCardProps = {
 
 const TaskCard = ({task, updateTask} : TaskCardProps) => {
   return (
-    <Card sx={{ marginTop: "1.5rem", ":hover": "red"}} onClick={updateTask}>
+    <Card data-testid="task-card" sx={{ marginTop: "1.5rem", ":hover": "red"}} onClick={updateTask}>
       <CardActionArea>
         <CardContent>
           <Box sx={{ display: "flex", flexDirection: "row" }}>
