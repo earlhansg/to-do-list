@@ -14,4 +14,19 @@ npm run test
 ```
 
 ## SampleUI
-<!-- <img src="https://github.com/earlhansg/otakus-bazaar/blob/main/frontend/src/images/loom.gif" style=" width:800px ; height:500px "> -->
+
+Initial Load
+
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/1.png" style=" width:800px ; height:500px ">
+
+Adding Task
+
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/2.png" style=" width:800px ; height:500px ">
+
+Updating/Deleting Task
+
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/3.png" style=" width:800px ; height:500px ">
+
+In the absence of data.
+
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/4.png" style=" width:800px ; height:500px ">
