@@ -1,6 +1,6 @@
 import React, { ReactNode, useState } from "react";
 /* materialUI */
-import { Chip, Tab, Tabs, Typography } from "@mui/material";
+import { Box, Chip, Tab, Tabs, Typography } from "@mui/material";
 /* store */
 import { useTaskStore } from "../../shared/stores/TaskStore";
 
@@ -39,37 +39,37 @@ const MenuTabs = ({ children }: MenuTabsProps) => {
       >
         <Tab
           label={
-            <Typography
-              id="modal-modal-title"
-              sx={{
-                fontSize: "15px",
-              }}
-            >
-              All tasks
+            <Box sx={{display: "flex", gap: 1}}>
+              <Typography
+                id="modal-modal-title"
+                sx={{
+                  fontSize: "15px",
+                }}
+              >
+                All tasks
+              </Typography>
               <Chip
-                label={tasks.filter((task) => task.status === 0).length}
-                size="small"
-                sx={{ marginLeft: "7px" }}
-              />
-            </Typography>
+                  label={tasks.filter((task) => task.status === 0).length}
+                  size="small"/>
+            </Box>
           }
           {...a11yProps(0)}
         />
         <Tab
           label={
-            <Typography
-              id="modal-modal-title"
-              sx={{
-                fontSize: "15px",
-              }}
-            >
-              All tasks
+            <Box sx={{display: "flex", gap: 1}}>
+              <Typography
+                id="modal-modal-title"
+                sx={{
+                  fontSize: "15px",
+                }}
+              >
+                Completed
+              </Typography>
               <Chip
-                label={tasks.filter((task) => task.status === 1).length}
-                size="small"
-                sx={{ marginLeft: "7px" }}
-              />
-            </Typography>
+              label={tasks.filter((task) => task.status === 1).length}
+              size="small"/>
+            </Box>
           }
           {...a11yProps(1)}
         />
