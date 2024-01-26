@@ -17,16 +17,16 @@ npm run test
 
 Initial Load
 
-<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/1.png" style=" width:700px ; height:400px ">
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/1.png" style=" width:700px ; height:370px ">
 
 Adding Task
 
-<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/2.png" style=" width:800px ; height:500px ">
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/2.png" style=" width:700px ; height:370px ">
 
 Updating/Deleting Task
 
-<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/3.png" style=" width:800px ; height:500px ">
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/3.png" style=" width:700px ; height:370px ">
 
 In the absence of data.
 
-<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/4.png" style=" width:800px ; height:500px ">
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/4.png" style=" width:700px ; height:370px ">
