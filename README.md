@@ -17,7 +17,7 @@ npm run test
 
 Initial Load
 
-<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/1.png" style=" width:700px ; height:500px ">
+<img src="https://github.com/earlhansg/to-do-list/blob/main/src/assets/sreenshots/1.png" style=" width:700px ; height:400px ">
 
 Adding Task
 
