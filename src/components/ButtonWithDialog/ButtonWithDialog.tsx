@@ -35,6 +35,7 @@ const ButtonWithDialog: React.ForwardRefRenderFunction<ButtonWithDialogMethods, 
       {isOpen && <TaskModal isOpen={isOpen} setIsOpen={setIsOpen} 
       actionType={actionType} toUpdateTask={task}/>}
       <Fab
+        data-testid="add-button"
         color="primary"
         aria-label="add"
         sx={ButtonWithDialogStyle.fabIcon}

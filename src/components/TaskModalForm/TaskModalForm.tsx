@@ -65,6 +65,7 @@ const TaskModalForm = ({
   return (
     <>
       <Modal
+        data-testid="task-form"
         open={isOpen}
         onClose={() => setIsOpen(false)}
         aria-labelledby="modal-modal-title"
